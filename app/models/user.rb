@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+
 has_many :events, trouhgt: :attendance
 has_many :attendances
 
@@ -9,4 +10,5 @@ has_many :attendances
     presence: true,
     uniqueness: true,
     format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "email adress please" }
+
 end
