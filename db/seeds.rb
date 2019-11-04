@@ -5,3 +5,31 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+User.destroy_all
+Event.destroy_all
+Attendance.destroy_all
+
+utilisateur = []
+event = []
+variable = 0
+chiffre_multiple_5 = [5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100]
+
+10.times do
+utilisateur << User.create(firstname: Faker::Name.first_name, lastname: Faker::Name.last_name, description: Faker::Lorem.sentence(word_count: 20), email: Faker::Internet.email, encrypted_password: "fauxuser")
+puts "User : #{Faker::Name.first_name + "@yopmail.com"}"
+end
+
+10.times do
+event << Event.create(start_date: Faker::Date.forward(days: 30), duration: chiffre_multiple_5.sample ,title: Faker::Book.title ,description: Faker::Lorem.sentence(word_count: 40) ,price: rand(1..1000) ,location: Faker::Address.city )
+puts "Event: #{Faker::Book.title}"
+end
+
+
+
+10.times do
+Attendance.create(user: utilisateur.sample, event: event.sample)
+puts  "Attendance: participera à l'évenement #{event.sample.title}"
+end
+
+
